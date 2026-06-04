@@ -24,7 +24,7 @@ const data = {
   },
   teams: [
     {
-      name: "SynaXG Tech",
+      name: "Home Tech",
       logo: (
         <GalleryVerticalEndIcon
         />
