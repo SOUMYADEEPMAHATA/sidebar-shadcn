@@ -57,7 +57,7 @@ const data = {
         />
       ),
       isActive: true,
-      items: [
+      items: [{/*
         {
           title: "History",
           url: "#",
@@ -70,7 +70,7 @@ const data = {
           title: "Settings",
           url: "#",
         },
-      ],
+      ,*/}]
     },
     {
       title: "Models",
@@ -79,7 +79,7 @@ const data = {
         <BotIcon
         />
       ),
-      items: [
+      items: [{/*
         {
           title: "Genesis",
           url: "#",
@@ -92,7 +92,7 @@ const data = {
           title: "Quantum",
           url: "#",
         },
-      ],
+      */}],
     },
     {
       title: "Documentation",
