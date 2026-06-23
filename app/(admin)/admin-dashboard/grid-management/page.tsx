@@ -221,9 +221,11 @@ export default function GridManagementPage() {
   return (
     <div className="space-y-6 p-4">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Grid Management</h1>
-        <p className="text-muted-foreground">
+      <div className="border-b pb-4">
+        <h1 className="text-4xl font-extrabold tracking-tight bg-linear-to-r from-violet-600 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
+          Grid Management
+        </h1>
+        <p className="text-muted-foreground mt-1 text-sm">
           Monitor Kubernetes edge clusters, map endpoint models, and control live query pipelines.
         </p>
       </div>
