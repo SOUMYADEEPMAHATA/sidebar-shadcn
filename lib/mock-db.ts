@@ -287,3 +287,146 @@ export const mockUsers: UserConfig[] = [
   }
 ];
 
+export interface GridTask {
+  id: string;
+  name: string;
+  status: "running" | "idle";
+  duration: number; // in seconds
+}
+
+export interface EndpointStats {
+  gpu: number;
+  cpu: number;
+  ram: number;
+  storage: number;
+  network: string;
+}
+
+export interface EndpointConfig {
+  id: string;
+  name: string;
+  model: string;
+  status: "active" | "idle" | "suspended";
+  hardware: string;
+  stats: EndpointStats;
+  tasks: GridTask[];
+}
+
+export interface ClusterConfig {
+  id: string;
+  name: string;
+  region: string;
+  description: string;
+  status: "healthy" | "degraded" | "offline";
+  position: [number, number];
+  endpoints: EndpointConfig[];
+}
+
+export const mockClusters: ClusterConfig[] = [
+  {
+    id: "us-east",
+    name: "US East Cluster (k8s-cluster-useast)",
+    region: "US East (N. Virginia)",
+    description: "Primary high-throughput GPU cluster featuring NVIDIA H100 tensor cores.",
+    status: "healthy",
+    position: [37.926868, -78.024902],
+    endpoints: [
+      {
+        id: "useast-ep1",
+        name: "api.useast-prod.synaxg.com",
+        model: "Qwen3-Coder-30B",
+        status: "active",
+        hardware: "8x H100 SXM5 80GB",
+        stats: { gpu: 82, cpu: 45, ram: 58, storage: 72, network: "120 MB/s" },
+        tasks: [
+          { id: "TSK-1042", name: "Code generation: autocomplete pipeline", status: "running", duration: 12 },
+          { id: "TSK-1043", name: "Code generation: docstring builder", status: "running", duration: 3 }
+        ]
+      },
+      {
+        id: "useast-ep2",
+        name: "api.useast-core.synaxg.com",
+        model: "Claude 3.5 Sonnet",
+        status: "active",
+        hardware: "4x A100 SXM4 80GB",
+        stats: { gpu: 94, cpu: 68, ram: 75, storage: 82, network: "310 MB/s" },
+        tasks: [
+          { id: "TSK-1044", name: "Agentic workflow: multi-step reasoning query", status: "running", duration: 48 },
+          { id: "TSK-1045", name: "Retrieval-Augmented Generation execution", status: "running", duration: 1 }
+        ]
+      },
+      {
+        id: "useast-ep3",
+        name: "embed.useast.synaxg.com",
+        model: "Text-Embedding-3",
+        status: "idle",
+        hardware: "1x L4 24GB",
+        stats: { gpu: 4, cpu: 12, ram: 28, storage: 45, network: "1.2 MB/s" },
+        tasks: []
+      }
+    ]
+  },
+  {
+    id: "sg-edge",
+    name: "Singapore Edge Node (k8s-cluster-sg)",
+    region: "Singapore (One-North)",
+    description: "Low-latency Asian edge router for local, proximity-sensitive inference.",
+    status: "healthy",
+    position: [1.2983199246659607, 103.7902840557283],
+    endpoints: [
+      {
+        id: "sg-ep1",
+        name: "api.sg-edge-1.synaxg.com",
+        model: "Llama 3 70B",
+        status: "active",
+        hardware: "2x L40S 48GB",
+        stats: { gpu: 68, cpu: 35, ram: 42, storage: 50, network: "85 MB/s" },
+        tasks: [
+          { id: "TSK-1060", name: "User chat: customer support conversation", status: "running", duration: 8 }
+        ]
+      },
+      {
+        id: "sg-ep2",
+        name: "api.sg-edge-backup.synaxg.com",
+        model: "Qwen3-Coder-30B",
+        status: "idle",
+        hardware: "1x A10G 24GB",
+        stats: { gpu: 0, cpu: 5, ram: 18, storage: 35, network: "0.1 MB/s" },
+        tasks: []
+      }
+    ]
+  },
+  {
+    id: "eu-west",
+    name: "Europe West Node (k8s-cluster-euwest)",
+    region: "Europe West (Frankfurt)",
+    description: "GDPR-compliant European node with restricted outbound connections.",
+    status: "degraded",
+    position: [50.110922, 8.682127],
+    endpoints: [
+      {
+        id: "euwest-ep1",
+        name: "api.euwest.synaxg.com",
+        model: "Mistral Large",
+        status: "active",
+        hardware: "4x H100 NVL 94GB",
+        stats: { gpu: 74, cpu: 52, ram: 63, storage: 68, network: "98 MB/s" },
+        tasks: [
+          { id: "TSK-1072", name: "Document translation: batch pdf processing", status: "running", duration: 215 },
+          { id: "TSK-1073", name: "Compliance screening: regulatory check", status: "running", duration: 12 }
+        ]
+      },
+      {
+        id: "euwest-ep2",
+        name: "secure.euwest.synaxg.com",
+        model: "Private Llama",
+        status: "suspended",
+        hardware: "2x A100 40GB",
+        stats: { gpu: 0, cpu: 0, ram: 0, storage: 90, network: "0 MB/s" },
+        tasks: []
+      }
+    ]
+  }
+];
+
+
